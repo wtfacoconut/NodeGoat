@@ -1,0 +1,2072 @@
+{
+  "$schema" : "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version" : "2.1.0",
+  "runs" : [ {
+    "tool" : {
+      "driver" : {
+        "name" : "Fortify on Demand",
+        "version" : "SCA version unknown; Rulepack version unknown",
+        "rules" : [ {
+          "id" : "146172436",
+          "shortDescription" : {
+            "text" : "Dockerfile Misconfiguration: Dependency Confusion"
+          },
+          "fullDescription" : {
+            "text" : "Retrieving build dependencies using a non-specific version can leave the build system vulnerable to malicious binaries or cause the system to experience unexpected behavior."
+          },
+          "help" : {
+            "text" : "Dockerfiles can specify an unbound range of versions for dependencies and base images. If an attacker is able to add malicious versions of dependencies to a repository or trick the build system into downloading dependencies from a repository under the attacker's control, if docker is configured without specific versions of dependencies, then docker will silently download and run the compromised dependency.\n\nThis type of weakness would be exploitable as a result of a supply chain attack where attackers can leverage misconfiguration by developers, typosquatting and can add malicious packages to open source repositories. An attack of this type exploits the trust in the published packages to gain access and exfiltrate data.\n\nIn docker, the latest tag automatically indicates the version level of an image that doesn't use a digest or unique tag to provide a version for it. Docker automatically assigns the latest tag as mechanism to point to the most recent image manifest file. Because tags are mutable, an attacker can replace an image or layer using a latest (or weak tags such as imagename-lst, imagename-last, myimage).\n\nExample 1: The following configuration instructs Docker to pick the base image using the latest version of ubuntu.\n\nFROM ubuntu:Latest\n...\n\n\nDocker does not validate whether the repository configured to support the package manager is trustworthy.\n\nExample 2: The following configuration instructs the package manager zypper to retrive the latest version of the given package.\n\n...\nzypper install package\n...\n\nIn Example 2, if the repository is compromised, an attacker could simply upload a version that meets the dynamic criteria and cause zypper to download a malicious version of the dependency.\n\n\nPerform version pinning or simple pinning. Version pinning explicitly specifies the version of images, libraries and support packages an application or system depends on. The primary goal of pinning is to ensure system stability to achieve repeatable deployments. Pinning ensures that end-users, developers, and testers all use the same code base. Pinning can additionally ensure the use of safe dependencies; those which have gone through the rigorous process of application security validation and malware detection.\n\nWhen you invoke zypper (or other package managers) from docker, use the following formats:\n\nRUN zypper install &lt;package_name&gt;=&lt;version&gt; \\\nRUN gem install &lt;package_name&gt; --version &lt;version&gt;\nRUN gem install &lt;package_name&gt; -v &lt;version&gt;\nRUN apk add &lt;package_name&gt;=&lt;version&gt;\nRUN apt-get update &amp;&amp; apt-get install -y  \\\n&lt;package_name&gt;=&lt;version&gt;  \\\n&lt;package_name&gt;=&lt;version&gt; \\\n&lt;package_name&gt;=&lt;version&gt; \\\n&amp;&amp; rm -rf /var/lib/apt/lists/*\n\nWhere &lt;package_name&gt; is the name of the dependency to install and &lt;version&gt; is the exact version or release the application should use.\n\nFortify also recommends:\n- Ensure the repositories that the package managers use are trustworthy or that they are properly kept, and there is no install package substitution possible, including the addition of malicious code onto the package.\n- Avoid using public or untrusted repositories.\n- Scan packages for malware and security vulnerabilities prior to executing any regression tests.\n- Use digitally signed images.\n- Avoid using image tags such as latest or weak tags such asimagename-lst, imagename-last, myimage for deployments in production environments.\n- Stick to more stable tags, like specific version tags, although there is no guarantee that these cannot mutate either.\n- Do not create mutant tags.\n- Implement strict control over the source of images and their layers.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/80464971-bc27-47eb-9ec5-c6891fccafa5"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172434",
+          "shortDescription" : {
+            "text" : "Insecure Transport"
+          },
+          "fullDescription" : {
+            "text" : "The call to createServer() in server.js on line 143 uses an unencrypted protocol instead of an encrypted protocol to communicate with the server.The call uses an unencrypted protocol instead of an encrypted protocol to communicate with the server."
+          },
+          "help" : {
+            "text" : "All communication over HTTP, FTP, or gopher is unauthenticated and unencrypted. It is therefore subject to compromise, especially in the mobile environment where devices frequently connect to unsecured, public, wireless networks using WiFi connections.\n\nExample 1: The following example reads data using the HTTP protocol (instead of using HTTPS).\n\n\nvar http = require('http');\n...\nhttp.request(options, function(res){\n...\n});\n...\n\n\nThe incoming http.IncomingMessage object,res, may have been compromised as it is delivered over an unencrypted and unauthenticated channel.\n\nUse secure protocols such as HTTPS to exchange data with the server whenever possible.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/6bcfa995-e0dd-4841-83b3-633209374441"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172413",
+          "shortDescription" : {
+            "text" : "Key Management: Hardcoded Encryption Key"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "It is never a good idea to hardcode an encryption key because it allows all of the project's developers to view the encryption key, and makes fixing the problem extremely difficult. After the code is in production, a software patch is required to change the encryption key. If the account that is protected by the encryption key is compromised, the owners of the system must choose between security and availability.\n\n\nIn this case, the encryption key is located at  in all.js on line 9.\n\nExample 1: The following code uses a hardcoded encryption key:\n\n\n...\nvar crypto = require('crypto');\nvar encryptionKey = \"lakdsljkalkjlksdfkl\";\nvar algorithm = 'aes-256-ctr';\nvar cipher = crypto.createCipher(algorithm, encryptionKey);\n...\n\n\nAnyone with access to the code has access to the encryption key. After the application has shipped, there is no way to change the encryption key unless the program is patched. An employee with access to this information can use it to break into the system. If attackers had access to the executable for the application, they could extract the encryption key value.\n\nEncryption keys should never be hardcoded and should be obfuscated and managed in an external source. Storing encryption keys in plain text anywhere on the system allows anyone with sufficient permissions to read and potentially misuse the encryption key.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/613b1c12-0db6-4068-bdd4-0bb1e8143ea6"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172437",
+          "shortDescription" : {
+            "text" : "Key Management: Hardcoded Encryption Key"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "Never hardcode an encryption key because it makes the encryption key visible to all of the project's developers, and makes fixing the problem extremely difficult. Changing the encryption key after the code is in production requires a software patch. If the account that the encryption key protects is compromised, the organization must choose between security and system availability.\n\n\nIn this case, an encryption key is located in server.key on line 1.\n\nExample 1: The following example shows an encryption key inside a .pem file:\n\n\n...\n-----BEGIN RSA PRIVATE KEY-----\nMIICXwIBAAKBgQCtVacMo+w+TFOm0p8MlBWvwXtVRpF28V+o0RNPx5x/1TJTlKEl\n...\nDiJPJY2LNBQ7jS685mb6650JdvH8uQl6oeJ/aUmq63o2zOw=\n-----END RSA PRIVATE KEY-----\n...\n\n\nAnyone with access to the code can see the encryption key. After the application has shipped, there is no way to change the encryption key unless the program is patched. An employee with access to this information can use it to break into the system. Any attacker with access to the application executable can extract the encryption key value.\n\nNever check in encryption keys to your source control system, and never hardcode them. Always obfuscate and manage encryption keys in an external source. Storing encryption keys in plain text anywhere on the system enables anyone with sufficient permissions to read and potentially misuse the encryption key.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/772c7034-f461-4aa6-9fb4-ea4f9891c144"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172441",
+          "shortDescription" : {
+            "text" : "Open Redirect"
+          },
+          "fullDescription" : {
+            "text" : "The file index.js passes unvalidated data to an HTTP redirect function on line 74. Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks.Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks."
+          },
+          "help" : {
+            "text" : "Redirects allow web applications to direct users to different pages within the same application or to external sites. Applications utilize redirects to aid in site navigation and, in some cases, to track how users exit the site. Open redirect vulnerabilities occur when a web application redirects clients to any arbitrary URL that can be controlled by an attacker.\n\nAttackers might utilize open redirects to trick users into visiting a URL to a trusted site, but then redirecting them to a malicious site. By encoding the URL, an attacker can make it difficult for end-users to notice the malicious destination of the redirect, even when it is passed as a URL parameter to the trusted site. Open redirects are often abused as part of phishing scams to harvest sensitive end-user data.\n\n\nIn this case, the URL the client will be redirected to is read at lambda() in index.js on line 72.\n\n\nThe data is sent at redirect() in index.js on line 74.\n\n\nExample 1: The following JavaScript code instructs the user's browser to open a URL read from the dest request parameter when a user clicks the link.\n\n\n...\nstrDest = form.dest.value;\nwindow.open(strDest,\"myresults\");\n...\n\n\nIf a victim received an email instructing them to follow a link to \"http://trusted.example.com/ecommerce/redirect.asp?dest=www.wilyhacker.com\", the user would likely click on the link believing they would be transferred to the trusted site. However, when the victim clicks the link, the code in Example 1 will redirect the browser to \"http://www.wilyhacker.com\".\n\nMany users have been educated to always inspect URLs they receive in emails to make sure the link specifies a trusted site they know. However, if the attacker Hex encoded the destination url as follows:\n\"http://trusted.example.com/ecommerce/redirect.asp?dest=%77%69%6C%79%68%61%63%6B%65%72%2E%63%6F%6D\"\n\nthen even a savvy end-user may be fooled into following the link.\n\nUnvalidated user input should not be allowed to control the destination URL in a redirect. Instead, use a level of indirection: create a list of legitimate URLs that users are allowed to specify, and only allow users to select from the list. With this approach, input provided by users is never used directly to specify a URL for redirects.\n\nExample 2: The following code references an array populated with valid URLs. The link the user clicks passes in the array index that corresponds to the desired URL.\n\n\n...\nstrDest = form.dest.value;\nif((strDest.value != null)||(strDest.value.length!=0))\n{\nif((strDest &gt;= 0) &amp;&amp; (strDest &lt;= strURLArray.length -1 ))\n{\nstrFinalURL = strURLArray[strDest];\nwindow.open(strFinalURL,\"myresults\");\n}\n}\n...\n\n\nIn some situations this approach is impractical because the set of legitimate URLs is too large or too hard to keep track of. In such cases, use a similar approach to restrict the domains that users can be redirected to, which can at least prevent attackers from sending users to malicious external sites.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/47d931b5-f6ce-4c39-9eea-544d351aee0b"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172414",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+          },
+          "help" : {
+            "text" : "It is never a good idea to have an empty password. It also makes fixing the problem extremely difficult once the code is in production. The password cannot be changed without patching the software. If the account protected by the empty password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 149.\n\n\nExample: The following code has an empty password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','');\n...\n\n\nThis code will run successfully, but anyone can access when they know the username.\n\nPasswords should never be empty and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/eb8502e8-8608-458b-a306-09914ee5c2c1"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172415",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+          },
+          "help" : {
+            "text" : "It is never a good idea to have an empty password. It also makes fixing the problem extremely difficult once the code is in production. The password cannot be changed without patching the software. If the account protected by the empty password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 45.\n\n\nExample: The following code has an empty password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','');\n...\n\n\nThis code will run successfully, but anyone can access when they know the username.\n\nPasswords should never be empty and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/8553860b-599a-4f82-8f7d-8762efdff0b9"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172418",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+          },
+          "help" : {
+            "text" : "It is never a good idea to have an empty password. It also makes fixing the problem extremely difficult once the code is in production. The password cannot be changed without patching the software. If the account protected by the empty password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 78.\n\n\nExample: The following code has an empty password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','');\n...\n\n\nThis code will run successfully, but anyone can access when they know the username.\n\nPasswords should never be empty and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/2fa8f0e0-b18d-4b85-8b88-811bfbf3be44"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172419",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+          },
+          "help" : {
+            "text" : "It is never a good idea to have an empty password. It also makes fixing the problem extremely difficult once the code is in production. The password cannot be changed without patching the software. If the account protected by the empty password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 87.\n\n\nExample: The following code has an empty password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','');\n...\n\n\nThis code will run successfully, but anyone can access when they know the username.\n\nPasswords should never be empty and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/6f2579c5-dd74-4ae5-a173-b8977a27c502"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172431",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+          },
+          "help" : {
+            "text" : "It is never a good idea to have an empty password. It also makes fixing the problem extremely difficult once the code is in production. The password cannot be changed without patching the software. If the account protected by the empty password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 122.\n\n\nExample: The following code has an empty password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','');\n...\n\n\nThis code will run successfully, but anyone can access when they know the username.\n\nPasswords should never be empty and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/dded24df-02d6-416d-a3b2-caf69f17c9a5"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172432",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+          },
+          "help" : {
+            "text" : "It is never a good idea to have an empty password. It also makes fixing the problem extremely difficult once the code is in production. The password cannot be changed without patching the software. If the account protected by the empty password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 123.\n\n\nExample: The following code has an empty password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','');\n...\n\n\nThis code will run successfully, but anyone can access when they know the username.\n\nPasswords should never be empty and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/84caa48b-e362-4d59-a537-dc5320259f7a"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172412",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "It is never a good idea to hardcode a password. Not only does hardcoding a password allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. After the code is in production, the password cannot be changed without patching the software. If the account protected by the password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 59.\n\n\nExample: The following code uses a hardcoded password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','tiger');\n...\n\n\nThis code will run successfully, but anyone who accesses the containing web page can view the password.\n\nPasswords should never be hardcoded and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/dae07edb-a311-422e-b591-504860760227"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172420",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "It is never a good idea to hardcode a password. Not only does hardcoding a password allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. After the code is in production, the password cannot be changed without patching the software. If the account protected by the password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in session.js on line 166.\n\n\nExample: The following code uses a hardcoded password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','tiger');\n...\n\n\nThis code will run successfully, but anyone who accesses the containing web page can view the password.\n\nPasswords should never be hardcoded and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/aa52cbad-1866-4e32-83a4-8c4ba5e99f2d"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172421",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "It is never a good idea to hardcode a password. Not only does hardcoding a password allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. After the code is in production, the password cannot be changed without patching the software. If the account protected by the password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in db-reset.js on line 18.\n\n\nExample: The following code uses a hardcoded password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','tiger');\n...\n\n\nThis code will run successfully, but anyone who accesses the containing web page can view the password.\n\nPasswords should never be hardcoded and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/91a27db0-e855-4ea0-98e7-3d610fbba9f1"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172422",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "It is never a good idea to hardcode a password. Not only does hardcoding a password allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. After the code is in production, the password cannot be changed without patching the software. If the account protected by the password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in db-reset.js on line 27.\n\n\nExample: The following code uses a hardcoded password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','tiger');\n...\n\n\nThis code will run successfully, but anyone who accesses the containing web page can view the password.\n\nPasswords should never be hardcoded and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/b529d0b5-3e99-400e-a3d3-27201c644aa4"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172423",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "It is never a good idea to hardcode a password. Not only does hardcoding a password allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. After the code is in production, the password cannot be changed without patching the software. If the account protected by the password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in db-reset.js on line 35.\n\n\nExample: The following code uses a hardcoded password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','tiger');\n...\n\n\nThis code will run successfully, but anyone who accesses the containing web page can view the password.\n\nPasswords should never be hardcoded and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/3bd48ff2-abf1-45d6-a83f-4bd33294fcf3"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172425",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+          },
+          "help" : {
+            "text" : "It is never a good idea to hardcode a password. Not only does hardcoding a password allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. After the code is in production, the password cannot be changed without patching the software. If the account protected by the password is compromised, the owners of the system must choose between security and availability.\n\nIn this case, the password was used to access a resource at  in profile-test.js on line 37.\n\n\nExample: The following code uses a hardcoded password to connect to an application and retrieve address book entries:\n\n\n...\nobj = new XMLHttpRequest();\nobj.open('GET','/fetchusers.jsp?id='+form.id.value,'true','scott','tiger');\n...\n\n\nThis code will run successfully, but anyone who accesses the containing web page can view the password.\n\nPasswords should never be hardcoded and should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the web site allows anyone with sufficient permissions to read and potentially misuse the password. For JavaScript calls that require passwords, it is better to prompt the user for the password at connection time.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/2d823fb7-f1bf-462e-aa44-26b70118c5fc"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172433",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is difficult to remedy."
+          },
+          "help" : {
+            "text" : "Never hardcode passwords. Not only does it expose the password to all of the project's developers, it also makes fixing the problem extremely difficult. After the code is in production, a program patch is probably the only way to change the password. If the account the password protects is compromised, the system owners must choose between security and availability.\n\nA password was configured to access a resource in package-lock.json on line 3886.\n\n\nExample: The following JSON uses a hardcoded password:\n\n\n...\n{\n\"username\":\"scott\"\n\"password\":\"tiger\"\n}\n...\n\n\nThis configuration may be valid, but anyone who has access to the configuration will have access to the password. After the program is released, changing the default user account \"scott\" with a password of \"tiger\" is difficult. Anyone with access to this information can use it to break into the system.\n\nNever hardcode password. Passwords should generally be obfuscated and managed in an external source. Storing passwords in plain text anywhere on the system allows anyone with sufficient permissions to read and potentially misuse the password.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/dba0cc19-9778-4fa6-8da8-c4963b0801dc"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172416",
+          "shortDescription" : {
+            "text" : "Password Management: Password in HTML Form"
+          },
+          "fullDescription" : {
+            "text" : "Populating password fields in an HTML form could result in a system compromise."
+          },
+          "help" : {
+            "text" : "Populating password fields in an HTML form allows anyone to see their values in the HTML source. Furthermore, sensitive information stored in password fields may be cached by proxies or browsers.\n\nDo not populate password-type form fields.\n\nExample: In HTML forms, do not set the value attribute of sensitive inputs.\n\n\n&lt;input type=\"password\" /&gt;\n\n\nFor more information, see https://ams.fortify.com//redirect/Issues/bae79d77-703c-4701-80a9-15297d0da3b2"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172417",
+          "shortDescription" : {
+            "text" : "Password Management: Password in HTML Form"
+          },
+          "fullDescription" : {
+            "text" : "Populating password fields in an HTML form could result in a system compromise."
+          },
+          "help" : {
+            "text" : "Populating password fields in an HTML form allows anyone to see their values in the HTML source. Furthermore, sensitive information stored in password fields may be cached by proxies or browsers.\n\nDo not populate password-type form fields.\n\nExample: In HTML forms, do not set the value attribute of sensitive inputs.\n\n\n&lt;input type=\"password\" /&gt;\n\n\nFor more information, see https://ams.fortify.com//redirect/Issues/b08bc319-d356-46c4-a62f-dc00243267cc"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172429",
+          "shortDescription" : {
+            "text" : "Password Management: Password in HTML Form"
+          },
+          "fullDescription" : {
+            "text" : "Populating password fields in an HTML form could result in a system compromise."
+          },
+          "help" : {
+            "text" : "Populating password fields in an HTML form allows anyone to see their values in the HTML source. Furthermore, sensitive information stored in password fields may be cached by proxies or browsers.\n\nDo not populate password-type form fields.\n\nExample: In HTML forms, do not set the value attribute of sensitive inputs.\n\n\n&lt;input type=\"password\" /&gt;\n\n\nFor more information, see https://ams.fortify.com//redirect/Issues/cee62dc1-1e8b-4133-a52b-d0d94c939757"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172424",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file session.js mishandles confidential information on line 208, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+          },
+          "help" : {
+            "text" : "Privacy violations occur when:\n\n1. Private user information enters the program.\n\nIn this case, the data comes from  in session.js on line 209.\n\n2. The data is written to an external location, such as the console, file system, or network.\n\nIn this case, the data is passed to render() in session.js on line 208.\n\n\nExample: The following code stores user's plain text password to the local storage.\n\n\nlocalStorage.setItem('password', password);\n\n\nAlthough many developers treat the local storage as a safe location for data, it should not be trusted implicitly, particularly when privacy is a concern.\n\nPrivate data can enter a program in a variety of ways:\n\n- Directly from the user in the form of a password or personal information\n\n- Accessed from a database or other data store by the application\n\n- Indirectly from a partner or other third party\n\nSometimes data that is not labeled as private can have a privacy implication in a different context. For example, student identification numbers are usually not considered private because there is no explicit and publicly-available mapping to an individual student's personal information. However, if a school generates identification numbers based on student social security numbers, then the identification numbers should be considered private.\n\nSecurity and privacy concerns often seem to compete with each other. From a security perspective, you should record all important operations so that any anomalous activity can later be identified. However, when private data is involved, this practice can create risk.\n\nAlthough there are many ways in which private data can be handled unsafely, a common risk stems from misplaced trust. Programmers often trust the operating environment in which a program runs, and therefore believe that it is acceptable to store private information on the file system, in the registry, or in other locally-controlled resources. However, even if access to certain resources is restricted, this does not guarantee that the individuals who do have access can be trusted. For example, in 2004, an unscrupulous employee at AOL sold approximately 92 million private customer email addresses to a spammer marketing an offshore gambling web site [1].\n\nIn response to such high-profile exploits, the collection and management of private data is becoming increasingly regulated. Depending on its location, the type of business it conducts, and the nature of any private data it handles, an organization may be required to comply with one or more of the following federal and state regulations:\n\n- Safe Harbor Privacy Framework [3]\n\n- Gramm-Leach Bliley Act (GLBA) [4]\n\n- Health Insurance Portability and Accountability Act (HIPAA) [5]\n\n- California SB-1386 [6]\n\nDespite these regulations, privacy violations continue to occur with alarming frequency.\n\nWhen security and privacy demands clash, privacy should usually be given the higher priority. To accomplish this and still maintain required security information, cleanse any private information before it exits the program.\n\nTo enforce good privacy management, develop and strictly adhere to internal privacy guidelines. The guidelines should specifically describe how an application should handle private data. If your organization is regulated by federal or state law, ensure that your privacy guidelines are sufficiently strenuous to meet the legal requirements. Even if your organization is not regulated, you must protect private information or risk losing customer confidence.\n\nThe best policy with respect to private data is to minimize its exposure. Applications, processes, and employees should not be granted access to any private data unless the access is required for the tasks that they are to perform. Just as the principle of least privilege dictates that no operation should be performed with more than the necessary privileges, access to private data should be restricted to the smallest possible group.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/1d98d1ec-e7c7-431b-9d87-21a755e55831"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172426",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file session.js mishandles confidential information on line 85, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+          },
+          "help" : {
+            "text" : "Privacy violations occur when:\n\n1. Private user information enters the program.\n\nIn this case, the data comes from  in session.js on line 88.\n\n2. The data is written to an external location, such as the console, file system, or network.\n\nIn this case, the data is passed to render() in session.js on line 85.\n\n\nExample: The following code stores user's plain text password to the local storage.\n\n\nlocalStorage.setItem('password', password);\n\n\nAlthough many developers treat the local storage as a safe location for data, it should not be trusted implicitly, particularly when privacy is a concern.\n\nPrivate data can enter a program in a variety of ways:\n\n- Directly from the user in the form of a password or personal information\n\n- Accessed from a database or other data store by the application\n\n- Indirectly from a partner or other third party\n\nSometimes data that is not labeled as private can have a privacy implication in a different context. For example, student identification numbers are usually not considered private because there is no explicit and publicly-available mapping to an individual student's personal information. However, if a school generates identification numbers based on student social security numbers, then the identification numbers should be considered private.\n\nSecurity and privacy concerns often seem to compete with each other. From a security perspective, you should record all important operations so that any anomalous activity can later be identified. However, when private data is involved, this practice can create risk.\n\nAlthough there are many ways in which private data can be handled unsafely, a common risk stems from misplaced trust. Programmers often trust the operating environment in which a program runs, and therefore believe that it is acceptable to store private information on the file system, in the registry, or in other locally-controlled resources. However, even if access to certain resources is restricted, this does not guarantee that the individuals who do have access can be trusted. For example, in 2004, an unscrupulous employee at AOL sold approximately 92 million private customer email addresses to a spammer marketing an offshore gambling web site [1].\n\nIn response to such high-profile exploits, the collection and management of private data is becoming increasingly regulated. Depending on its location, the type of business it conducts, and the nature of any private data it handles, an organization may be required to comply with one or more of the following federal and state regulations:\n\n- Safe Harbor Privacy Framework [3]\n\n- Gramm-Leach Bliley Act (GLBA) [4]\n\n- Health Insurance Portability and Accountability Act (HIPAA) [5]\n\n- California SB-1386 [6]\n\nDespite these regulations, privacy violations continue to occur with alarming frequency.\n\nWhen security and privacy demands clash, privacy should usually be given the higher priority. To accomplish this and still maintain required security information, cleanse any private information before it exits the program.\n\nTo enforce good privacy management, develop and strictly adhere to internal privacy guidelines. The guidelines should specifically describe how an application should handle private data. If your organization is regulated by federal or state law, ensure that your privacy guidelines are sufficiently strenuous to meet the legal requirements. Even if your organization is not regulated, you must protect private information or risk losing customer confidence.\n\nThe best policy with respect to private data is to minimize its exposure. Applications, processes, and employees should not be granted access to any private data unless the access is required for the tasks that they are to perform. Just as the principle of least privilege dictates that no operation should be performed with more than the necessary privileges, access to private data should be restricted to the smallest possible group.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/e2a15b03-b92f-4cfd-928c-0dc9aa84b4c6"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172427",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+          },
+          "help" : {
+            "text" : "Privacy violations occur when:\n\n1. Private user information enters the program.\n\nIn this case, the data comes from  in profile.js on line 69.\n\n2. The data is written to an external location, such as the console, file system, or network.\n\nIn this case, the data is passed to render() in profile.js on line 65.\n\n\nExample: The following code stores user's plain text password to the local storage.\n\n\nlocalStorage.setItem('password', password);\n\n\nAlthough many developers treat the local storage as a safe location for data, it should not be trusted implicitly, particularly when privacy is a concern.\n\nPrivate data can enter a program in a variety of ways:\n\n- Directly from the user in the form of a password or personal information\n\n- Accessed from a database or other data store by the application\n\n- Indirectly from a partner or other third party\n\nSometimes data that is not labeled as private can have a privacy implication in a different context. For example, student identification numbers are usually not considered private because there is no explicit and publicly-available mapping to an individual student's personal information. However, if a school generates identification numbers based on student social security numbers, then the identification numbers should be considered private.\n\nSecurity and privacy concerns often seem to compete with each other. From a security perspective, you should record all important operations so that any anomalous activity can later be identified. However, when private data is involved, this practice can create risk.\n\nAlthough there are many ways in which private data can be handled unsafely, a common risk stems from misplaced trust. Programmers often trust the operating environment in which a program runs, and therefore believe that it is acceptable to store private information on the file system, in the registry, or in other locally-controlled resources. However, even if access to certain resources is restricted, this does not guarantee that the individuals who do have access can be trusted. For example, in 2004, an unscrupulous employee at AOL sold approximately 92 million private customer email addresses to a spammer marketing an offshore gambling web site [1].\n\nIn response to such high-profile exploits, the collection and management of private data is becoming increasingly regulated. Depending on its location, the type of business it conducts, and the nature of any private data it handles, an organization may be required to comply with one or more of the following federal and state regulations:\n\n- Safe Harbor Privacy Framework [3]\n\n- Gramm-Leach Bliley Act (GLBA) [4]\n\n- Health Insurance Portability and Accountability Act (HIPAA) [5]\n\n- California SB-1386 [6]\n\nDespite these regulations, privacy violations continue to occur with alarming frequency.\n\nWhen security and privacy demands clash, privacy should usually be given the higher priority. To accomplish this and still maintain required security information, cleanse any private information before it exits the program.\n\nTo enforce good privacy management, develop and strictly adhere to internal privacy guidelines. The guidelines should specifically describe how an application should handle private data. If your organization is regulated by federal or state law, ensure that your privacy guidelines are sufficiently strenuous to meet the legal requirements. Even if your organization is not regulated, you must protect private information or risk losing customer confidence.\n\nThe best policy with respect to private data is to minimize its exposure. Applications, processes, and employees should not be granted access to any private data unless the access is required for the tasks that they are to perform. Just as the principle of least privilege dictates that no operation should be performed with more than the necessary privileges, access to private data should be restricted to the smallest possible group.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/543f5d98-0864-4327-b681-33bb8dc79639"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172428",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file session.js mishandles confidential information on line 243, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+          },
+          "help" : {
+            "text" : "Privacy violations occur when:\n\n1. Private user information enters the program.\n\nIn this case, the data comes from  in session.js on line 244.\n\n2. The data is written to an external location, such as the console, file system, or network.\n\nIn this case, the data is passed to render() in session.js on line 243.\n\n\nExample: The following code stores user's plain text password to the local storage.\n\n\nlocalStorage.setItem('password', password);\n\n\nAlthough many developers treat the local storage as a safe location for data, it should not be trusted implicitly, particularly when privacy is a concern.\n\nPrivate data can enter a program in a variety of ways:\n\n- Directly from the user in the form of a password or personal information\n\n- Accessed from a database or other data store by the application\n\n- Indirectly from a partner or other third party\n\nSometimes data that is not labeled as private can have a privacy implication in a different context. For example, student identification numbers are usually not considered private because there is no explicit and publicly-available mapping to an individual student's personal information. However, if a school generates identification numbers based on student social security numbers, then the identification numbers should be considered private.\n\nSecurity and privacy concerns often seem to compete with each other. From a security perspective, you should record all important operations so that any anomalous activity can later be identified. However, when private data is involved, this practice can create risk.\n\nAlthough there are many ways in which private data can be handled unsafely, a common risk stems from misplaced trust. Programmers often trust the operating environment in which a program runs, and therefore believe that it is acceptable to store private information on the file system, in the registry, or in other locally-controlled resources. However, even if access to certain resources is restricted, this does not guarantee that the individuals who do have access can be trusted. For example, in 2004, an unscrupulous employee at AOL sold approximately 92 million private customer email addresses to a spammer marketing an offshore gambling web site [1].\n\nIn response to such high-profile exploits, the collection and management of private data is becoming increasingly regulated. Depending on its location, the type of business it conducts, and the nature of any private data it handles, an organization may be required to comply with one or more of the following federal and state regulations:\n\n- Safe Harbor Privacy Framework [3]\n\n- Gramm-Leach Bliley Act (GLBA) [4]\n\n- Health Insurance Portability and Accountability Act (HIPAA) [5]\n\n- California SB-1386 [6]\n\nDespite these regulations, privacy violations continue to occur with alarming frequency.\n\nWhen security and privacy demands clash, privacy should usually be given the higher priority. To accomplish this and still maintain required security information, cleanse any private information before it exits the program.\n\nTo enforce good privacy management, develop and strictly adhere to internal privacy guidelines. The guidelines should specifically describe how an application should handle private data. If your organization is regulated by federal or state law, ensure that your privacy guidelines are sufficiently strenuous to meet the legal requirements. Even if your organization is not regulated, you must protect private information or risk losing customer confidence.\n\nThe best policy with respect to private data is to minimize its exposure. Applications, processes, and employees should not be granted access to any private data unless the access is required for the tasks that they are to perform. Just as the principle of least privilege dictates that no operation should be performed with more than the necessary privileges, access to private data should be restricted to the smallest possible group.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/cd45508f-96da-4c90-b2fc-a38a8de7bdba"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172430",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+          },
+          "help" : {
+            "text" : "Privacy violations occur when:\n\n1. Private user information enters the program.\n\nIn this case, the data comes from  in profile.js on line 42.\n\n2. The data is written to an external location, such as the console, file system, or network.\n\nIn this case, the data is passed to render() in profile.js on line 65.\n\n\nExample: The following code stores user's plain text password to the local storage.\n\n\nlocalStorage.setItem('password', password);\n\n\nAlthough many developers treat the local storage as a safe location for data, it should not be trusted implicitly, particularly when privacy is a concern.\n\nPrivate data can enter a program in a variety of ways:\n\n- Directly from the user in the form of a password or personal information\n\n- Accessed from a database or other data store by the application\n\n- Indirectly from a partner or other third party\n\nSometimes data that is not labeled as private can have a privacy implication in a different context. For example, student identification numbers are usually not considered private because there is no explicit and publicly-available mapping to an individual student's personal information. However, if a school generates identification numbers based on student social security numbers, then the identification numbers should be considered private.\n\nSecurity and privacy concerns often seem to compete with each other. From a security perspective, you should record all important operations so that any anomalous activity can later be identified. However, when private data is involved, this practice can create risk.\n\nAlthough there are many ways in which private data can be handled unsafely, a common risk stems from misplaced trust. Programmers often trust the operating environment in which a program runs, and therefore believe that it is acceptable to store private information on the file system, in the registry, or in other locally-controlled resources. However, even if access to certain resources is restricted, this does not guarantee that the individuals who do have access can be trusted. For example, in 2004, an unscrupulous employee at AOL sold approximately 92 million private customer email addresses to a spammer marketing an offshore gambling web site [1].\n\nIn response to such high-profile exploits, the collection and management of private data is becoming increasingly regulated. Depending on its location, the type of business it conducts, and the nature of any private data it handles, an organization may be required to comply with one or more of the following federal and state regulations:\n\n- Safe Harbor Privacy Framework [3]\n\n- Gramm-Leach Bliley Act (GLBA) [4]\n\n- Health Insurance Portability and Accountability Act (HIPAA) [5]\n\n- California SB-1386 [6]\n\nDespite these regulations, privacy violations continue to occur with alarming frequency.\n\nWhen security and privacy demands clash, privacy should usually be given the higher priority. To accomplish this and still maintain required security information, cleanse any private information before it exits the program.\n\nTo enforce good privacy management, develop and strictly adhere to internal privacy guidelines. The guidelines should specifically describe how an application should handle private data. If your organization is regulated by federal or state law, ensure that your privacy guidelines are sufficiently strenuous to meet the legal requirements. Even if your organization is not regulated, you must protect private information or risk losing customer confidence.\n\nThe best policy with respect to private data is to minimize its exposure. Applications, processes, and employees should not be granted access to any private data unless the access is required for the tasks that they are to perform. Just as the principle of least privilege dictates that no operation should be performed with more than the necessary privileges, access to private data should be restricted to the smallest possible group.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/451c3ee7-91d3-42df-81a5-c91f99671fbe"
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "146172438",
+          "shortDescription" : {
+            "text" : "Privacy Violation: Autocomplete"
+          },
+          "fullDescription" : {
+            "text" : "The form in signup.html uses autocompletion on line 96, which allows some browsers to retain sensitive information in their history.Autocompletion of forms allows some browsers to retain sensitive information in their history."
+          },
+          "help" : {
+            "text" : "With autocompletion enabled, some browsers retain user input across sessions, which could allow someone using the computer after the initial user to see information previously submitted.\n\nExplicitly disable autocompletion on forms or sensitive inputs. By disabling autocompletion, information previously entered will not be presented back to the user as they type. It will also disable the \"remember my password\" functionality of most major browsers.\n\nExample 1: In an  HTML form, disable autocompletion for all input fields by explicitly setting the value of the autocomplete attribute to off on the form tag.\n\n\n&lt;form method=\"post\" autocomplete=\"off\"&gt;\nAddress: &lt;input name=\"address\" /&gt;\nPassword: &lt;input name=\"password\" type=\"password\" /&gt;\n&lt;/form&gt;\n\n\nExample 2: Alternatively, disable autocompletion for specific input fields by explicitly setting the value of the autocomplete attribute to off on the corresponding tags.\n\n\n&lt;form method=\"post\"&gt;\nAddress: &lt;input name=\"address\" /&gt;\nPassword: &lt;input name=\"password\" type=\"password\" autocomplete=\"off\"/&gt;\n&lt;/form&gt;\n\n\nNote that the default value of the autocomplete attributed is on. Therefore do not omit the attribute when dealing with sensitive inputs.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/8c852238-ba68-48d2-bfc7-3b9756b52e3e"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172439",
+          "shortDescription" : {
+            "text" : "Privacy Violation: Autocomplete"
+          },
+          "fullDescription" : {
+            "text" : "The form in signup.html uses autocompletion on line 91, which allows some browsers to retain sensitive information in their history.Autocompletion of forms allows some browsers to retain sensitive information in their history."
+          },
+          "help" : {
+            "text" : "With autocompletion enabled, some browsers retain user input across sessions, which could allow someone using the computer after the initial user to see information previously submitted.\n\nExplicitly disable autocompletion on forms or sensitive inputs. By disabling autocompletion, information previously entered will not be presented back to the user as they type. It will also disable the \"remember my password\" functionality of most major browsers.\n\nExample 1: In an  HTML form, disable autocompletion for all input fields by explicitly setting the value of the autocomplete attribute to off on the form tag.\n\n\n&lt;form method=\"post\" autocomplete=\"off\"&gt;\nAddress: &lt;input name=\"address\" /&gt;\nPassword: &lt;input name=\"password\" type=\"password\" /&gt;\n&lt;/form&gt;\n\n\nExample 2: Alternatively, disable autocompletion for specific input fields by explicitly setting the value of the autocomplete attribute to off on the corresponding tags.\n\n\n&lt;form method=\"post\"&gt;\nAddress: &lt;input name=\"address\" /&gt;\nPassword: &lt;input name=\"password\" type=\"password\" autocomplete=\"off\"/&gt;\n&lt;/form&gt;\n\n\nNote that the default value of the autocomplete attributed is on. Therefore do not omit the attribute when dealing with sensitive inputs.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/69bad360-88b4-4d65-8761-77c7101bba12"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172440",
+          "shortDescription" : {
+            "text" : "Privacy Violation: Autocomplete"
+          },
+          "fullDescription" : {
+            "text" : "The form in login.html uses autocompletion on line 115, which allows some browsers to retain sensitive information in their history.Autocompletion of forms allows some browsers to retain sensitive information in their history."
+          },
+          "help" : {
+            "text" : "With autocompletion enabled, some browsers retain user input across sessions, which could allow someone using the computer after the initial user to see information previously submitted.\n\nExplicitly disable autocompletion on forms or sensitive inputs. By disabling autocompletion, information previously entered will not be presented back to the user as they type. It will also disable the \"remember my password\" functionality of most major browsers.\n\nExample 1: In an  HTML form, disable autocompletion for all input fields by explicitly setting the value of the autocomplete attribute to off on the form tag.\n\n\n&lt;form method=\"post\" autocomplete=\"off\"&gt;\nAddress: &lt;input name=\"address\" /&gt;\nPassword: &lt;input name=\"password\" type=\"password\" /&gt;\n&lt;/form&gt;\n\n\nExample 2: Alternatively, disable autocompletion for specific input fields by explicitly setting the value of the autocomplete attribute to off on the corresponding tags.\n\n\n&lt;form method=\"post\"&gt;\nAddress: &lt;input name=\"address\" /&gt;\nPassword: &lt;input name=\"password\" type=\"password\" autocomplete=\"off\"/&gt;\n&lt;/form&gt;\n\n\nNote that the default value of the autocomplete attributed is on. Therefore do not omit the attribute when dealing with sensitive inputs.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/bbb53577-0a95-4853-98a5-04285428f453"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "146172435",
+          "shortDescription" : {
+            "text" : "Process Control"
+          },
+          "fullDescription" : {
+            "text" : "The method lambda() in index.js calls render() on line 88, thereby loading a library from an untrusted source or in an untrusted environment. This call can cause an application to execute malicious code on behalf of an attacker.Loading libraries from an untrusted source or in an untrusted environment can cause an application to execute malicious commands on behalf of an attacker. "
+          },
+          "help" : {
+            "text" : "Process control vulnerabilities take two forms:\n\n- An attacker can change the name of the library that the program loads: the attacker explicitly controls what the name of the library is.\n\n- An attacker can change the environment in which the library loads: the attacker implicitly controls what the library name means.\n\nIn this case, we are primarily concerned with the first scenario, the possibility that an attacker may be able to control the name of the library that is loaded. Process control vulnerabilities of this type occur when:\n\n1. Data enters the application from an untrusted source.\n\n\nIn this case, the data enters at lambda() in index.js on line 84.\n\n\n2. The data is used as or as part of a string representing a library that is loaded by the application.\n\n\nIn this case, the library is loaded by render() in index.js on line 88.\n\n\n3. By executing code from the library, the application gives the attacker a privilege or capability that the attacker would not otherwise have.\n\nExample 1: The following code uses a currently undocumented \"feature\" of Express to dynamically load a library file. Node.js will then continue to search through its regular library load path for a file or directory containing this library[1].\n\n\nvar express = require('express');\nvar app = express();\n\napp.get('/', function(req, res, next) {\nres.render('tutorial/' + req.params.page);\n});\n\n\nIn Express, the page passed to Response.render() will load a library of the extension when previously unknown. This is usually fine for input such as \"foo.pug\", as this will mean loading the pug library, a well known templating engine. However, if an attacker can control the page and thus the extension, then they can choose to load any library within the Node.js module loading paths. Since the program does not validate the information received from the URL parameter, the attacker may fool the application into running malicious code and take control of the system.\n\nDo not allow users to control libraries loaded by the program. In cases where user input must affect the choice of the library to load, the application typically expects a particular input to take on only a very small set of values. Rather than relying on the input to be safe and non-malicious, the application should use the input only to make a selection from a predetermined set of safe libraries. If the input appears to be malicious, the library to be loaded should either default to some safe selection from this set or the program should gracefully decline to continue operation.\n\nAn attacker may indirectly control the libraries loaded by a program by modifying the environment. The environment should not be trusted and precautions should be taken to prevent an attacker from using some manipulation of the environment to perform an attack. Whenever possible, library names should be controlled by the application and loaded using an absolute path. In cases where the path is not known at compile time, an absolute path should be constructed from trusted values during execution. Library names and paths read from the environment should be sanity-checked against a set of invariants that define valid values.\n\nFor the case of Response.render() in Express applications, only hardcoded extensions should be used, for libraries already imported manually via hardcoded paths, since template files obtained to render should all have static extensions in the first place, so this \"feature\" should be unnecessary to utilize.\n\nOther checks can sometimes be performed to detect if the environment may have been tampered with. For example, if a configuration file is world-writable, the program might refuse to run. In cases where information about the library to be loaded is known in advance, the program may perform checks to verify the identity of the file. If a library should always be owned by a particular user or have a particular set of access permissions assigned to it, these properties can be verified programmatically before it is loaded.\n\nIn the end it may be impossible for a program to fully protect itself from an imaginative attacker bent on controlling the libraries it loads. You should strive to identify and protect against every conceivable manipulation of input values and the environment. The goal should be to shut down as many attack vectors as possible.\n\nFor more information, see https://ams.fortify.com//redirect/Issues/083b4317-11d5-4726-9a46-cfae037b33d6"
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        } ]
+      }
+    },
+    "results" : [ {
+      "ruleId" : "146172436",
+      "message" : {
+        "text" : "Retrieving build dependencies using a non-specific version can leave the build system vulnerable to malicious binaries or cause the system to experience unexpected behavior."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "2B6B2D21E1B0F55C2BE18D0B846774E1"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "Dockerfile"
+          },
+          "region" : {
+            "startLine" : 5,
+            "endLine" : 5,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "Dockerfile:5 - RUN"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "Dockerfile"
+                },
+                "region" : {
+                  "startLine" : 5
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172434",
+      "message" : {
+        "text" : "The call to createServer() in server.js on line 143 uses an unencrypted protocol instead of an encrypted protocol to communicate with the server.The call uses an unencrypted protocol instead of an encrypted protocol to communicate with the server."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "EACB7EFB097786B8D22FAE4A5B6042D8"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "server.js"
+          },
+          "region" : {
+            "startLine" : 143,
+            "endLine" : 143,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "server.js:143 - FunctionPointerCall: createServer"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "server.js"
+                },
+                "region" : {
+                  "startLine" : 143
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172413",
+      "message" : {
+        "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "0089EF1A0502D557FE055B17DB19DA77"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "config/env/all.js"
+          },
+          "region" : {
+            "startLine" : 9,
+            "endLine" : 9,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "all.js:9 - FieldAccess: cryptoKey"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "config/env/all.js"
+                },
+                "region" : {
+                  "startLine" : 9
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "all.js:9 - Field: cryptoKey"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "config/env/all.js"
+                },
+                "region" : {
+                  "startLine" : 9
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172437",
+      "message" : {
+        "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "DFA19C51631FEBA6F7EBB2D0EACD44BB"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/cert/server.key"
+          },
+          "region" : {
+            "startLine" : 1,
+            "endLine" : 1,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "server.key:1"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "artifacts/cert/server.key"
+                },
+                "region" : {
+                  "startLine" : 1
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172441",
+      "message" : {
+        "text" : "The file index.js passes unvalidated data to an HTTP redirect function on line 74. Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks.Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "C9E27AE41B771FBC54334D45A675C265"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/index.js"
+          },
+          "region" : {
+            "startLine" : 74,
+            "endLine" : 74,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "index.js:72 - lambda(0.query)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/index.js"
+                },
+                "region" : {
+                  "startLine" : 72
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "index.js:74 - redirect(0)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/index.js"
+                },
+                "region" : {
+                  "startLine" : 74
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172414",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "2ABBE93E4E4790B1674BF2C6B7E05173"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 149,
+            "endLine" : 149,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:149 - FieldAccess: passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 149
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:195 - Field: passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 195
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172415",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "35CDD88C5A12963B4883F27BC6BB2594"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 45,
+            "endLine" : 45,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:45 - FieldAccess: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 45
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:45 - Field: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 45
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172418",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "6D1CA79C2FF501E2725BAF886C3AC644"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 78,
+            "endLine" : 78,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:78 - FieldAccess: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 78
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:78 - Field: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 78
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172419",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "6D1CA79C2FF501E2725BAF886C3AC645"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 87,
+            "endLine" : 87,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:87 - FieldAccess: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 87
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:87 - Field: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 87
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172431",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "98061DF6684B47AADA03E7C3488B8F74"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 122,
+            "endLine" : 122,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:122 - FieldAccess: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 122
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:122 - Field: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 122
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172432",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "901CE7B304DDF4BB67370148E262CD7E"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 123,
+            "endLine" : 123,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:123 - FieldAccess: passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 123
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:123 - Field: passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 123
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172412",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "0DD984448062A5C514FA709BFACD1183"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 59,
+            "endLine" : 59,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:59 - VariableAccess: invalidPasswordErrorMessage"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 59
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:59 - Variable: invalidPasswordErrorMessage"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 59
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172420",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "6F09B62E1ED09E6A8DF071DE9731A010"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 166,
+            "endLine" : 166,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:166 - FieldAccess: passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 166
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:195 - Field: passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 195
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172421",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "72189EF604D7B9E400EA71D876F17355"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 18,
+            "endLine" : 18,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "db-reset.js:18 - FieldAccess: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "artifacts/db-reset.js"
+                },
+                "region" : {
+                  "startLine" : 18
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "db-reset.js:18 - Field: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "artifacts/db-reset.js"
+                },
+                "region" : {
+                  "startLine" : 18
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172422",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "72189EF604D7B9E400EA71D876F17356"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 27,
+            "endLine" : 27,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "db-reset.js:27 - FieldAccess: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "artifacts/db-reset.js"
+                },
+                "region" : {
+                  "startLine" : 27
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "db-reset.js:27 - Field: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "artifacts/db-reset.js"
+                },
+                "region" : {
+                  "startLine" : 27
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172423",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "72189EF604D7B9E400EA71D876F17357"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 35,
+            "endLine" : 35,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "db-reset.js:35 - FieldAccess: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "artifacts/db-reset.js"
+                },
+                "region" : {
+                  "startLine" : 35
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "db-reset.js:35 - Field: password"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "artifacts/db-reset.js"
+                },
+                "region" : {
+                  "startLine" : 35
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172425",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "7FBD8A79ACD28854C22498C6EF2BA264"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "test/security/profile-test.js"
+          },
+          "region" : {
+            "startLine" : 37,
+            "endLine" : 37,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "profile-test.js:37 - VariableAccess: sutUserPassword"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "test/security/profile-test.js"
+                },
+                "region" : {
+                  "startLine" : 37
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "profile-test.js:37 - Variable: sutUserPassword"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "test/security/profile-test.js"
+                },
+                "region" : {
+                  "startLine" : 37
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172433",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is difficult to remedy."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "BA91A217A2B1A598D5F0DB1C81F31D26"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "package-lock.json"
+          },
+          "region" : {
+            "startLine" : 3886,
+            "endLine" : 3886,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "package-lock.json:3886 - ConfigPair"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "package-lock.json"
+                },
+                "region" : {
+                  "startLine" : 3886
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172416",
+      "message" : {
+        "text" : "Populating password fields in an HTML form could result in a system compromise."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "1689B22759284193F58FE467DD3CC740"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 96,
+            "endLine" : 96,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "signup.html:96"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/views/signup.html"
+                },
+                "region" : {
+                  "startLine" : 96
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172417",
+      "message" : {
+        "text" : "Populating password fields in an HTML form could result in a system compromise."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "1689B22759284193F58FE467DD3CC73F"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 91,
+            "endLine" : 91,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "signup.html:91"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/views/signup.html"
+                },
+                "region" : {
+                  "startLine" : 91
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172429",
+      "message" : {
+        "text" : "Populating password fields in an HTML form could result in a system compromise."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "8396E27AEE7C952153A92815BD209386"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/login.html"
+          },
+          "region" : {
+            "startLine" : 115,
+            "endLine" : 115,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "login.html:115"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/views/login.html"
+                },
+                "region" : {
+                  "startLine" : 115
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172424",
+      "message" : {
+        "text" : "The file session.js mishandles confidential information on line 208, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "39F50EBE63CA8705EDC20D0F64ECEE8D"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 208,
+            "endLine" : 208,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:209 - Read errors.passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 209
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:209 - Assignment to passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 209
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:208 - render(1)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 208
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172426",
+      "message" : {
+        "text" : "The file session.js mishandles confidential information on line 85, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "61EC9A03519BEE225E5C83D9669E5DCE"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 85,
+            "endLine" : 85,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:88 - Read invalidPasswordErrorMessage"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 88
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:88 - Assignment to loginError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 88
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:85 - render(1)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 85
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172427",
+      "message" : {
+        "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "8138997683C62F9FD77E56EF9DCB8F48"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/profile.js"
+          },
+          "region" : {
+            "startLine" : 65,
+            "endLine" : 65,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "profile.js:69 - Read ssn"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/profile.js"
+                },
+                "region" : {
+                  "startLine" : 69
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "profile.js:69 - Assignment to ssn"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/profile.js"
+                },
+                "region" : {
+                  "startLine" : 69
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "profile.js:65 - render(1)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/profile.js"
+                },
+                "region" : {
+                  "startLine" : 65
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172428",
+      "message" : {
+        "text" : "The file session.js mishandles confidential information on line 243, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "8EFBE36DD1D49952A7C8C049A0084F47"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 243,
+            "endLine" : 243,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "session.js:244 - Read errors.passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 244
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:244 - Assignment to passwordError"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 244
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "session.js:243 - render(1)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/session.js"
+                },
+                "region" : {
+                  "startLine" : 243
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172430",
+      "message" : {
+        "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. "
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "0D6F44E9AAE3473FF284EF886E5264F5"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/profile.js"
+          },
+          "region" : {
+            "startLine" : 65,
+            "endLine" : 65,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "profile.js:42 - Read ssn"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/profile.js"
+                },
+                "region" : {
+                  "startLine" : 42
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "profile.js:45 - Assignment to ssn"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/profile.js"
+                },
+                "region" : {
+                  "startLine" : 45
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "profile.js:69 - Assignment to ssn"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/profile.js"
+                },
+                "region" : {
+                  "startLine" : 69
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "profile.js:65 - render(1)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/profile.js"
+                },
+                "region" : {
+                  "startLine" : 65
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172438",
+      "message" : {
+        "text" : "The form in signup.html uses autocompletion on line 96, which allows some browsers to retain sensitive information in their history.Autocompletion of forms allows some browsers to retain sensitive information in their history."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "62246F26778F74AE4BE747957AE1C072"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 96,
+            "endLine" : 96,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "signup.html:96"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/views/signup.html"
+                },
+                "region" : {
+                  "startLine" : 96
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172439",
+      "message" : {
+        "text" : "The form in signup.html uses autocompletion on line 91, which allows some browsers to retain sensitive information in their history.Autocompletion of forms allows some browsers to retain sensitive information in their history."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "62246F26778F74AE4BE747957AE1C071"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 91,
+            "endLine" : 91,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "signup.html:91"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/views/signup.html"
+                },
+                "region" : {
+                  "startLine" : 91
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172440",
+      "message" : {
+        "text" : "The form in login.html uses autocompletion on line 115, which allows some browsers to retain sensitive information in their history.Autocompletion of forms allows some browsers to retain sensitive information in their history."
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "F46C9EF7203D77D83D3486BCDC78565F"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/login.html"
+          },
+          "region" : {
+            "startLine" : 115,
+            "endLine" : 115,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "login.html:115"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/views/login.html"
+                },
+                "region" : {
+                  "startLine" : 115
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    }, {
+      "ruleId" : "146172435",
+      "message" : {
+        "text" : "The method lambda() in index.js calls render() on line 88, thereby loading a library from an untrusted source or in an untrusted environment. This call can cause an application to execute malicious code on behalf of an attacker.Loading libraries from an untrusted source or in an untrusted environment can cause an application to execute malicious commands on behalf of an attacker. "
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "03AA13F0746716227B1B559B8577E754"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/index.js"
+          },
+          "region" : {
+            "startLine" : 88,
+            "endLine" : 88,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ],
+      "codeFlows" : [ {
+        "threadFlows" : [ {
+          "locations" : [ {
+            "location" : {
+              "message" : {
+                "text" : "index.js:84 - lambda(0.params)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/index.js"
+                },
+                "region" : {
+                  "startLine" : 84
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "index.js:86 - Assignment to page"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/index.js"
+                },
+                "region" : {
+                  "startLine" : 86
+                }
+              }
+            }
+          }, {
+            "location" : {
+              "message" : {
+                "text" : "index.js:88 - render(0)"
+              },
+              "physicalLocation" : {
+                "artifactLocation" : {
+                  "uri" : "app/routes/index.js"
+                },
+                "region" : {
+                  "startLine" : 88
+                }
+              }
+            }
+          } ]
+        } ]
+      } ]
+    } ]
+  } ]
+}
