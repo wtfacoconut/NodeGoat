@@ -1,0 +1,2408 @@
+{
+  "$schema" : "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version" : "2.1.0",
+  "runs" : [ {
+    "tool" : {
+      "driver" : {
+        "name" : "Fortify SCA",
+        "version" : "22.1.0.0166",
+        "rules" : [ {
+          "id" : "4882",
+          "shortDescription" : {
+            "text" : "Dockerfile Misconfiguration: Dependency Confusion"
+          },
+          "fullDescription" : {
+            "text" : "Retrieving build dependencies using a non-specific version can leave the build system vulnerable to malicious binaries or cause the system to experience unexpected behavior.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4882/?engineType=SCA&issue=2B6B2D21E1B0F55C2BE18D0B846774E1.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4882/?engineType=SCA&issue=2B6B2D21E1B0F55C2BE18D0B846774E1)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4891",
+          "shortDescription" : {
+            "text" : "Command Injection"
+          },
+          "fullDescription" : {
+            "text" : "The method lambda() in Gruntfile.js calls exec() with a command built from untrusted data. This call can cause the program to execute malicious commands on behalf of an attacker.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4891/?engineType=SCA&issue=5B0FB29AE76CD2BDCF92EBABBFA05E0B.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4891/?engineType=SCA&issue=5B0FB29AE76CD2BDCF92EBABBFA05E0B)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4877",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4877/?engineType=SCA&issue=0E349BC56B75F063BCD5DC7ABC31E229.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4877/?engineType=SCA&issue=0E349BC56B75F063BCD5DC7ABC31E229)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4923",
+          "shortDescription" : {
+            "text" : "Insecure Randomness"
+          },
+          "fullDescription" : {
+            "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4923/?engineType=SCA&issue=B69B36F4F1BED75FD84E0B93E2234579.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4923/?engineType=SCA&issue=B69B36F4F1BED75FD84E0B93E2234579)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4924",
+          "shortDescription" : {
+            "text" : "Insecure Randomness"
+          },
+          "fullDescription" : {
+            "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4924/?engineType=SCA&issue=B69B36F4F1BED75FD84E0B93E223457A.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4924/?engineType=SCA&issue=B69B36F4F1BED75FD84E0B93E223457A)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4925",
+          "shortDescription" : {
+            "text" : "Insecure Randomness"
+          },
+          "fullDescription" : {
+            "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4925/?engineType=SCA&issue=B69B36F4F1BED75FD84E0B93E223457B.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4925/?engineType=SCA&issue=B69B36F4F1BED75FD84E0B93E223457B)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4884",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4884/?engineType=SCA&issue=30F5B0F0AD2B4A00ECCEC643B7D62FC0.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4884/?engineType=SCA&issue=30F5B0F0AD2B4A00ECCEC643B7D62FC0)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4889",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4889/?engineType=SCA&issue=55CAF6ABB1D89F9D2324DAB6F9749DF6.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4889/?engineType=SCA&issue=55CAF6ABB1D89F9D2324DAB6F9749DF6)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4930",
+          "shortDescription" : {
+            "text" : "Open Redirect"
+          },
+          "fullDescription" : {
+            "text" : "The file index.js passes unvalidated data to an HTTP redirect function on line 74. Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4930/?engineType=SCA&issue=C9E27AE41B771FBC54334D45A675C265.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4930/?engineType=SCA&issue=C9E27AE41B771FBC54334D45A675C265)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4874",
+          "shortDescription" : {
+            "text" : "Process Control"
+          },
+          "fullDescription" : {
+            "text" : "The method lambda() in index.js calls render() on line 88, thereby loading a library from an untrusted source or in an untrusted environment. This call can cause an application to execute malicious code on behalf of an attacker.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4874/?engineType=SCA&issue=03AA13F0746716227B1B559B8577E754.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4874/?engineType=SCA&issue=03AA13F0746716227B1B559B8577E754)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4875",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4875/?engineType=SCA&issue=0D6F44E9AAE3473FF284EF886E5264F5.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4875/?engineType=SCA&issue=0D6F44E9AAE3473FF284EF886E5264F5)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4911",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4911/?engineType=SCA&issue=8138997683C62F9FD77E56EF9DCB8F48.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4911/?engineType=SCA&issue=8138997683C62F9FD77E56EF9DCB8F48)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4896",
+          "shortDescription" : {
+            "text" : "Insecure Randomness"
+          },
+          "fullDescription" : {
+            "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4896/?engineType=SCA&issue=67A43B24B75FC3E0544AB73AF16AC8AF.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4896/?engineType=SCA&issue=67A43B24B75FC3E0544AB73AF16AC8AF)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4897",
+          "shortDescription" : {
+            "text" : "Insecure Randomness"
+          },
+          "fullDescription" : {
+            "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4897/?engineType=SCA&issue=67A43B24B75FC3E0544AB73AF16AC8B0.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4897/?engineType=SCA&issue=67A43B24B75FC3E0544AB73AF16AC8B0)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4885",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4885/?engineType=SCA&issue=35CDD88C5A12963B4883F27BC6BB2594.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4885/?engineType=SCA&issue=35CDD88C5A12963B4883F27BC6BB2594)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4876",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4876/?engineType=SCA&issue=0DD984448062A5C514FA709BFACD1183.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4876/?engineType=SCA&issue=0DD984448062A5C514FA709BFACD1183)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4898",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4898/?engineType=SCA&issue=6D1CA79C2FF501E2725BAF886C3AC644.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4898/?engineType=SCA&issue=6D1CA79C2FF501E2725BAF886C3AC644)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4909",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4909/?engineType=SCA&issue=80155818AE5D71A9D0A41F26E81B8C44.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4909/?engineType=SCA&issue=80155818AE5D71A9D0A41F26E81B8C44)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4893",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file session.js mishandles confidential information on line 85, which can compromise user privacy and is often illegal.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4893/?engineType=SCA&issue=61EC9A03519BEE225E5C83D9669E5DCE.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4893/?engineType=SCA&issue=61EC9A03519BEE225E5C83D9669E5DCE)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4899",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4899/?engineType=SCA&issue=6D1CA79C2FF501E2725BAF886C3AC645.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4899/?engineType=SCA&issue=6D1CA79C2FF501E2725BAF886C3AC645)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4910",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4910/?engineType=SCA&issue=80155818AE5D71A9D0A41F26E81B8C45.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4910/?engineType=SCA&issue=80155818AE5D71A9D0A41F26E81B8C45)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4916",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4916/?engineType=SCA&issue=98061DF6684B47AADA03E7C3488B8F74.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4916/?engineType=SCA&issue=98061DF6684B47AADA03E7C3488B8F74)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4914",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4914/?engineType=SCA&issue=901CE7B304DDF4BB67370148E262CD7E.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4914/?engineType=SCA&issue=901CE7B304DDF4BB67370148E262CD7E)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4918",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4918/?engineType=SCA&issue=A2BE8B24616FB6324958B74E9845A041.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4918/?engineType=SCA&issue=A2BE8B24616FB6324958B74E9845A041)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4881",
+          "shortDescription" : {
+            "text" : "Password Management: Empty Password"
+          },
+          "fullDescription" : {
+            "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4881/?engineType=SCA&issue=2ABBE93E4E4790B1674BF2C6B7E05173.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4881/?engineType=SCA&issue=2ABBE93E4E4790B1674BF2C6B7E05173)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4901",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4901/?engineType=SCA&issue=6F09B62E1ED09E6A8DF071DE9731A010.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4901/?engineType=SCA&issue=6F09B62E1ED09E6A8DF071DE9731A010)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4886",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file session.js mishandles confidential information on line 208, which can compromise user privacy and is often illegal.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4886/?engineType=SCA&issue=39F50EBE63CA8705EDC20D0F64ECEE8D.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4886/?engineType=SCA&issue=39F50EBE63CA8705EDC20D0F64ECEE8D)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4913",
+          "shortDescription" : {
+            "text" : "Privacy Violation"
+          },
+          "fullDescription" : {
+            "text" : "The file session.js mishandles confidential information on line 243, which can compromise user privacy and is often illegal.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4913/?engineType=SCA&issue=8EFBE36DD1D49952A7C8C049A0084F47.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4913/?engineType=SCA&issue=8EFBE36DD1D49952A7C8C049A0084F47)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4919",
+          "shortDescription" : {
+            "text" : "Cross-Site Request Forgery"
+          },
+          "fullDescription" : {
+            "text" : "The form post at allocations.html line 15 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4919/?engineType=SCA&issue=A79721FA462E9157F7231CFE66CFE5A3.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4919/?engineType=SCA&issue=A79721FA462E9157F7231CFE66CFE5A3)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4917",
+          "shortDescription" : {
+            "text" : "Cross-Site Request Forgery"
+          },
+          "fullDescription" : {
+            "text" : "The form post at benefits.html line 54 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4917/?engineType=SCA&issue=9BDB3FF6D1BC11E92A3446FE14C2D53F.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4917/?engineType=SCA&issue=9BDB3FF6D1BC11E92A3446FE14C2D53F)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4931",
+          "shortDescription" : {
+            "text" : "Hidden Field"
+          },
+          "fullDescription" : {
+            "text" : "A hidden form field is used in benefits.html on line 56.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4931/?engineType=SCA&issue=D2A697FA6B116533A7462289801EE330.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4931/?engineType=SCA&issue=D2A697FA6B116533A7462289801EE330)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4888",
+          "shortDescription" : {
+            "text" : "Cross-Site Request Forgery"
+          },
+          "fullDescription" : {
+            "text" : "The form post at contributions.html line 46 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4888/?engineType=SCA&issue=477DA3AF04C371E42751756A56D39C73.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4888/?engineType=SCA&issue=477DA3AF04C371E42751756A56D39C73)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4912",
+          "shortDescription" : {
+            "text" : "Password Management: Password in HTML Form"
+          },
+          "fullDescription" : {
+            "text" : "Populating password fields in an HTML form could result in a system compromise.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4912/?engineType=SCA&issue=8396E27AEE7C952153A92815BD209386.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4912/?engineType=SCA&issue=8396E27AEE7C952153A92815BD209386)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4934",
+          "shortDescription" : {
+            "text" : "Privacy Violation: Autocomplete"
+          },
+          "fullDescription" : {
+            "text" : "The form in login.html uses autocompletion on line 115, which allows some browsers to retain sensitive information in their history.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4934/?engineType=SCA&issue=F46C9EF7203D77D83D3486BCDC78565F.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4934/?engineType=SCA&issue=F46C9EF7203D77D83D3486BCDC78565F)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4915",
+          "shortDescription" : {
+            "text" : "Hidden Field"
+          },
+          "fullDescription" : {
+            "text" : "A hidden form field is used in login.html on line 117.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4915/?engineType=SCA&issue=92BEAE8780F31A6AA1A84B792AFEFBED.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4915/?engineType=SCA&issue=92BEAE8780F31A6AA1A84B792AFEFBED)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4900",
+          "shortDescription" : {
+            "text" : "Cross-Site Request Forgery"
+          },
+          "fullDescription" : {
+            "text" : "The form post at memos.html line 15 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4900/?engineType=SCA&issue=6D6B6F1A2308856C70226BE089A7D481.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4900/?engineType=SCA&issue=6D6B6F1A2308856C70226BE089A7D481)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4907",
+          "shortDescription" : {
+            "text" : "Hidden Field"
+          },
+          "fullDescription" : {
+            "text" : "A hidden form field is used in profile.html on line 73.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4907/?engineType=SCA&issue=7E97F9A7AF8E7597C65BE7FEE33F0DC3.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4907/?engineType=SCA&issue=7E97F9A7AF8E7597C65BE7FEE33F0DC3)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4887",
+          "shortDescription" : {
+            "text" : "Cross-Site Request Forgery"
+          },
+          "fullDescription" : {
+            "text" : "The form post at research.html line 15 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4887/?engineType=SCA&issue=3EDED14493665832E55EC4761FA68762.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4887/?engineType=SCA&issue=3EDED14493665832E55EC4761FA68762)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4920",
+          "shortDescription" : {
+            "text" : "Hidden Field"
+          },
+          "fullDescription" : {
+            "text" : "A hidden form field is used in research.html on line 17.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4920/?engineType=SCA&issue=B2413209533466AA35BEF67442A1A3F5.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4920/?engineType=SCA&issue=B2413209533466AA35BEF67442A1A3F5)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4878",
+          "shortDescription" : {
+            "text" : "Password Management: Password in HTML Form"
+          },
+          "fullDescription" : {
+            "text" : "Populating password fields in an HTML form could result in a system compromise.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4878/?engineType=SCA&issue=1689B22759284193F58FE467DD3CC73F.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4878/?engineType=SCA&issue=1689B22759284193F58FE467DD3CC73F)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4894",
+          "shortDescription" : {
+            "text" : "Privacy Violation: Autocomplete"
+          },
+          "fullDescription" : {
+            "text" : "The form in signup.html uses autocompletion on line 91, which allows some browsers to retain sensitive information in their history.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4894/?engineType=SCA&issue=62246F26778F74AE4BE747957AE1C071.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4894/?engineType=SCA&issue=62246F26778F74AE4BE747957AE1C071)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4879",
+          "shortDescription" : {
+            "text" : "Password Management: Password in HTML Form"
+          },
+          "fullDescription" : {
+            "text" : "Populating password fields in an HTML form could result in a system compromise.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4879/?engineType=SCA&issue=1689B22759284193F58FE467DD3CC740.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4879/?engineType=SCA&issue=1689B22759284193F58FE467DD3CC740)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4895",
+          "shortDescription" : {
+            "text" : "Privacy Violation: Autocomplete"
+          },
+          "fullDescription" : {
+            "text" : "The form in signup.html uses autocompletion on line 96, which allows some browsers to retain sensitive information in their history.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4895/?engineType=SCA&issue=62246F26778F74AE4BE747957AE1C072.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4895/?engineType=SCA&issue=62246F26778F74AE4BE747957AE1C072)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4890",
+          "shortDescription" : {
+            "text" : "Hidden Field"
+          },
+          "fullDescription" : {
+            "text" : "A hidden form field is used in signup.html on line 104.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4890/?engineType=SCA&issue=5641A4F2CC8CA3A613D4625CCC2A1F26.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4890/?engineType=SCA&issue=5641A4F2CC8CA3A613D4625CCC2A1F26)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4926",
+          "shortDescription" : {
+            "text" : "Insecure Transport: External Link"
+          },
+          "fullDescription" : {
+            "text" : "The file a2.html on line 207 links to a third-party site over an unencrypted channel.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4926/?engineType=SCA&issue=B9EA4CFA5D53D6F43A11D40E766EA887.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4926/?engineType=SCA&issue=B9EA4CFA5D53D6F43A11D40E766EA887)."
+          },
+          "properties" : {
+            "tags" : [ "Medium" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4927",
+          "shortDescription" : {
+            "text" : "Insecure Transport: External Link"
+          },
+          "fullDescription" : {
+            "text" : "The file a2.html on line 209 links to a third-party site over an unencrypted channel.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4927/?engineType=SCA&issue=B9EA4CFA5D53D6F43A11D40E766EA888.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4927/?engineType=SCA&issue=B9EA4CFA5D53D6F43A11D40E766EA888)."
+          },
+          "properties" : {
+            "tags" : [ "Medium" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4928",
+          "shortDescription" : {
+            "text" : "Insecure Transport: External Link"
+          },
+          "fullDescription" : {
+            "text" : "The file a2.html on line 210 links to a third-party site over an unencrypted channel.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4928/?engineType=SCA&issue=B9EA4CFA5D53D6F43A11D40E766EA889.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4928/?engineType=SCA&issue=B9EA4CFA5D53D6F43A11D40E766EA889)."
+          },
+          "properties" : {
+            "tags" : [ "Medium" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4921",
+          "shortDescription" : {
+            "text" : "Insecure Transport: External Link"
+          },
+          "fullDescription" : {
+            "text" : "The file a5.html on line 50 links to a third-party site over an unencrypted channel.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4921/?engineType=SCA&issue=B271BD0CA8A9A9202C99D036EB739155.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4921/?engineType=SCA&issue=B271BD0CA8A9A9202C99D036EB739155)."
+          },
+          "properties" : {
+            "tags" : [ "Medium" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4922",
+          "shortDescription" : {
+            "text" : "Insecure Transport: External Link"
+          },
+          "fullDescription" : {
+            "text" : "The file a5.html on line 51 links to a third-party site over an unencrypted channel.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4922/?engineType=SCA&issue=B271BD0CA8A9A9202C99D036EB739156.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4922/?engineType=SCA&issue=B271BD0CA8A9A9202C99D036EB739156)."
+          },
+          "properties" : {
+            "tags" : [ "Medium" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4880",
+          "shortDescription" : {
+            "text" : "Insecure Transport: External Link"
+          },
+          "fullDescription" : {
+            "text" : "The file a9.html on line 40 links to a third-party site over an unencrypted channel.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4880/?engineType=SCA&issue=1DAD94C24BF4651AEF4DF2DBFBACAB9E.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4880/?engineType=SCA&issue=1DAD94C24BF4651AEF4DF2DBFBACAB9E)."
+          },
+          "properties" : {
+            "tags" : [ "Medium" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4932",
+          "shortDescription" : {
+            "text" : "Key Management: Hardcoded Encryption Key"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4932/?engineType=SCA&issue=DFA19C51631FEBA6F7EBB2D0EACD44BB.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4932/?engineType=SCA&issue=DFA19C51631FEBA6F7EBB2D0EACD44BB)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4904",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4904/?engineType=SCA&issue=72189EF604D7B9E400EA71D876F17355.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4904/?engineType=SCA&issue=72189EF604D7B9E400EA71D876F17355)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4935",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4935/?engineType=SCA&issue=FA5EA3045768636D54B33315A7FDBDAC.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4935/?engineType=SCA&issue=FA5EA3045768636D54B33315A7FDBDAC)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4905",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4905/?engineType=SCA&issue=72189EF604D7B9E400EA71D876F17356.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4905/?engineType=SCA&issue=72189EF604D7B9E400EA71D876F17356)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4883",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4883/?engineType=SCA&issue=2D151BEEA7156FBE11E480F095D1420F.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4883/?engineType=SCA&issue=2D151BEEA7156FBE11E480F095D1420F)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4906",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4906/?engineType=SCA&issue=72189EF604D7B9E400EA71D876F17357.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4906/?engineType=SCA&issue=72189EF604D7B9E400EA71D876F17357)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4892",
+          "shortDescription" : {
+            "text" : "Password Management: Password in Comment"
+          },
+          "fullDescription" : {
+            "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4892/?engineType=SCA&issue=5D05F722692A74986A60000AD7CA3869.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4892/?engineType=SCA&issue=5D05F722692A74986A60000AD7CA3869)."
+          },
+          "properties" : {
+            "tags" : [ "Low" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4902",
+          "shortDescription" : {
+            "text" : "Insecure Randomness"
+          },
+          "fullDescription" : {
+            "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4902/?engineType=SCA&issue=71ECFADDED6F7614D2C9BE477B240957.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4902/?engineType=SCA&issue=71ECFADDED6F7614D2C9BE477B240957)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4903",
+          "shortDescription" : {
+            "text" : "Insecure Randomness"
+          },
+          "fullDescription" : {
+            "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4903/?engineType=SCA&issue=71ECFADDED6F7614D2C9BE477B240958.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4903/?engineType=SCA&issue=71ECFADDED6F7614D2C9BE477B240958)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4873",
+          "shortDescription" : {
+            "text" : "Key Management: Hardcoded Encryption Key"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4873/?engineType=SCA&issue=0089EF1A0502D557FE055B17DB19DA77.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4873/?engineType=SCA&issue=0089EF1A0502D557FE055B17DB19DA77)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4929",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is difficult to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4929/?engineType=SCA&issue=BA91A217A2B1A598D5F0DB1C81F31D26.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4929/?engineType=SCA&issue=BA91A217A2B1A598D5F0DB1C81F31D26)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        }, {
+          "id" : "4933",
+          "shortDescription" : {
+            "text" : "Insecure Transport"
+          },
+          "fullDescription" : {
+            "text" : "The call to createServer() in server.js on line 143 uses an unencrypted protocol instead of an encrypted protocol to communicate with the server.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4933/?engineType=SCA&issue=EACB7EFB097786B8D22FAE4A5B6042D8.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4933/?engineType=SCA&issue=EACB7EFB097786B8D22FAE4A5B6042D8)."
+          },
+          "properties" : {
+            "tags" : [ "Critical" ],
+            "precision" : "high"
+          }
+        }, {
+          "id" : "4908",
+          "shortDescription" : {
+            "text" : "Password Management: Hardcoded Password"
+          },
+          "fullDescription" : {
+            "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+          },
+          "help" : {
+            "text" : "For detailed recommendations, code examples, dataflow diagram and more, see http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4908/?engineType=SCA&issue=7FBD8A79ACD28854C22498C6EF2BA264.",
+            "markdown" : "For detailed recommendations, code examples, dataflow diagram and more, log in to [SSC](http://192.168.65.213:8080/ssc/html/ssc/version/12/fix/4908/?engineType=SCA&issue=7FBD8A79ACD28854C22498C6EF2BA264)."
+          },
+          "properties" : {
+            "tags" : [ "High" ],
+            "precision" : "low"
+          }
+        } ]
+      }
+    },
+    "results" : [ {
+      "ruleId" : "4882",
+      "message" : {
+        "text" : "Retrieving build dependencies using a non-specific version can leave the build system vulnerable to malicious binaries or cause the system to experience unexpected behavior.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "2B6B2D21E1B0F55C2BE18D0B846774E1"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "Dockerfile"
+          },
+          "region" : {
+            "startLine" : 5,
+            "endLine" : 5,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4891",
+      "message" : {
+        "text" : "The method lambda() in Gruntfile.js calls exec() with a command built from untrusted data. This call can cause the program to execute malicious commands on behalf of an attacker.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "5B0FB29AE76CD2BDCF92EBABBFA05E0B"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "Gruntfile.js"
+          },
+          "region" : {
+            "startLine" : 158,
+            "endLine" : 158,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4877",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "0E349BC56B75F063BCD5DC7ABC31E229"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/data/user-dao.js"
+          },
+          "region" : {
+            "startLine" : 26,
+            "endLine" : 26,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4923",
+      "message" : {
+        "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B69B36F4F1BED75FD84E0B93E2234579"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/data/user-dao.js"
+          },
+          "region" : {
+            "startLine" : 51,
+            "endLine" : 51,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4924",
+      "message" : {
+        "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B69B36F4F1BED75FD84E0B93E223457A"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/data/user-dao.js"
+          },
+          "region" : {
+            "startLine" : 52,
+            "endLine" : 52,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4925",
+      "message" : {
+        "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B69B36F4F1BED75FD84E0B93E223457B"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/data/user-dao.js"
+          },
+          "region" : {
+            "startLine" : 53,
+            "endLine" : 53,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4884",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "30F5B0F0AD2B4A00ECCEC643B7D62FC0"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/data/user-dao.js"
+          },
+          "region" : {
+            "startLine" : 59,
+            "endLine" : 59,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4889",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "55CAF6ABB1D89F9D2324DAB6F9749DF6"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/data/user-dao.js"
+          },
+          "region" : {
+            "startLine" : 62,
+            "endLine" : 62,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4930",
+      "message" : {
+        "text" : "The file index.js passes unvalidated data to an HTTP redirect function on line 74. Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "C9E27AE41B771FBC54334D45A675C265"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/index.js"
+          },
+          "region" : {
+            "startLine" : 74,
+            "endLine" : 74,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4874",
+      "message" : {
+        "text" : "The method lambda() in index.js calls render() on line 88, thereby loading a library from an untrusted source or in an untrusted environment. This call can cause an application to execute malicious code on behalf of an attacker.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "03AA13F0746716227B1B559B8577E754"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/index.js"
+          },
+          "region" : {
+            "startLine" : 88,
+            "endLine" : 88,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4875",
+      "message" : {
+        "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "0D6F44E9AAE3473FF284EF886E5264F5"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/profile.js"
+          },
+          "region" : {
+            "startLine" : 65,
+            "endLine" : 65,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4911",
+      "message" : {
+        "text" : "The file profile.js mishandles confidential information on line 65, which can compromise user privacy and is often illegal.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "8138997683C62F9FD77E56EF9DCB8F48"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/profile.js"
+          },
+          "region" : {
+            "startLine" : 65,
+            "endLine" : 65,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4896",
+      "message" : {
+        "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "67A43B24B75FC3E0544AB73AF16AC8AF"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 16,
+            "endLine" : 16,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4897",
+      "message" : {
+        "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "67A43B24B75FC3E0544AB73AF16AC8B0"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 17,
+            "endLine" : 17,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4885",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "35CDD88C5A12963B4883F27BC6BB2594"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 45,
+            "endLine" : 45,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4876",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "0DD984448062A5C514FA709BFACD1183"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 59,
+            "endLine" : 59,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4898",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "6D1CA79C2FF501E2725BAF886C3AC644"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 78,
+            "endLine" : 78,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4909",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "80155818AE5D71A9D0A41F26E81B8C44"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 80,
+            "endLine" : 80,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4893",
+      "message" : {
+        "text" : "The file session.js mishandles confidential information on line 85, which can compromise user privacy and is often illegal.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "61EC9A03519BEE225E5C83D9669E5DCE"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 85,
+            "endLine" : 85,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4899",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "6D1CA79C2FF501E2725BAF886C3AC645"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 87,
+            "endLine" : 87,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4910",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "80155818AE5D71A9D0A41F26E81B8C45"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 89,
+            "endLine" : 89,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4916",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "98061DF6684B47AADA03E7C3488B8F74"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 122,
+            "endLine" : 122,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4914",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "901CE7B304DDF4BB67370148E262CD7E"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 123,
+            "endLine" : 123,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4918",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "A2BE8B24616FB6324958B74E9845A041"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 139,
+            "endLine" : 139,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4881",
+      "message" : {
+        "text" : "Empty passwords may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "2ABBE93E4E4790B1674BF2C6B7E05173"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 149,
+            "endLine" : 149,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4901",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "6F09B62E1ED09E6A8DF071DE9731A010"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 166,
+            "endLine" : 166,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4886",
+      "message" : {
+        "text" : "The file session.js mishandles confidential information on line 208, which can compromise user privacy and is often illegal.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "39F50EBE63CA8705EDC20D0F64ECEE8D"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 208,
+            "endLine" : 208,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4913",
+      "message" : {
+        "text" : "The file session.js mishandles confidential information on line 243, which can compromise user privacy and is often illegal.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "8EFBE36DD1D49952A7C8C049A0084F47"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/routes/session.js"
+          },
+          "region" : {
+            "startLine" : 243,
+            "endLine" : 243,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4919",
+      "message" : {
+        "text" : "The form post at allocations.html line 15 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "A79721FA462E9157F7231CFE66CFE5A3"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/allocations.html"
+          },
+          "region" : {
+            "startLine" : 15,
+            "endLine" : 15,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4917",
+      "message" : {
+        "text" : "The form post at benefits.html line 54 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "9BDB3FF6D1BC11E92A3446FE14C2D53F"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/benefits.html"
+          },
+          "region" : {
+            "startLine" : 54,
+            "endLine" : 54,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4931",
+      "message" : {
+        "text" : "A hidden form field is used in benefits.html on line 56.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "D2A697FA6B116533A7462289801EE330"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/benefits.html"
+          },
+          "region" : {
+            "startLine" : 56,
+            "endLine" : 56,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4888",
+      "message" : {
+        "text" : "The form post at contributions.html line 46 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "477DA3AF04C371E42751756A56D39C73"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/contributions.html"
+          },
+          "region" : {
+            "startLine" : 46,
+            "endLine" : 46,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4912",
+      "message" : {
+        "text" : "Populating password fields in an HTML form could result in a system compromise.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "8396E27AEE7C952153A92815BD209386"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/login.html"
+          },
+          "region" : {
+            "startLine" : 115,
+            "endLine" : 115,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4934",
+      "message" : {
+        "text" : "The form in login.html uses autocompletion on line 115, which allows some browsers to retain sensitive information in their history.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "F46C9EF7203D77D83D3486BCDC78565F"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/login.html"
+          },
+          "region" : {
+            "startLine" : 115,
+            "endLine" : 115,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4915",
+      "message" : {
+        "text" : "A hidden form field is used in login.html on line 117.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "92BEAE8780F31A6AA1A84B792AFEFBED"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/login.html"
+          },
+          "region" : {
+            "startLine" : 117,
+            "endLine" : 117,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4900",
+      "message" : {
+        "text" : "The form post at memos.html line 15 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "6D6B6F1A2308856C70226BE089A7D481"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/memos.html"
+          },
+          "region" : {
+            "startLine" : 15,
+            "endLine" : 15,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4907",
+      "message" : {
+        "text" : "A hidden form field is used in profile.html on line 73.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "7E97F9A7AF8E7597C65BE7FEE33F0DC3"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/profile.html"
+          },
+          "region" : {
+            "startLine" : 73,
+            "endLine" : 73,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4887",
+      "message" : {
+        "text" : "The form post at research.html line 15 must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "3EDED14493665832E55EC4761FA68762"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/research.html"
+          },
+          "region" : {
+            "startLine" : 15,
+            "endLine" : 15,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4920",
+      "message" : {
+        "text" : "A hidden form field is used in research.html on line 17.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B2413209533466AA35BEF67442A1A3F5"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/research.html"
+          },
+          "region" : {
+            "startLine" : 17,
+            "endLine" : 17,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4878",
+      "message" : {
+        "text" : "Populating password fields in an HTML form could result in a system compromise.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "1689B22759284193F58FE467DD3CC73F"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 91,
+            "endLine" : 91,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4894",
+      "message" : {
+        "text" : "The form in signup.html uses autocompletion on line 91, which allows some browsers to retain sensitive information in their history.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "62246F26778F74AE4BE747957AE1C071"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 91,
+            "endLine" : 91,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4879",
+      "message" : {
+        "text" : "Populating password fields in an HTML form could result in a system compromise.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "1689B22759284193F58FE467DD3CC740"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 96,
+            "endLine" : 96,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4895",
+      "message" : {
+        "text" : "The form in signup.html uses autocompletion on line 96, which allows some browsers to retain sensitive information in their history.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "62246F26778F74AE4BE747957AE1C072"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 96,
+            "endLine" : 96,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4890",
+      "message" : {
+        "text" : "A hidden form field is used in signup.html on line 104.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "5641A4F2CC8CA3A613D4625CCC2A1F26"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/signup.html"
+          },
+          "region" : {
+            "startLine" : 104,
+            "endLine" : 104,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4926",
+      "message" : {
+        "text" : "The file a2.html on line 207 links to a third-party site over an unencrypted channel.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B9EA4CFA5D53D6F43A11D40E766EA887"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/tutorial/a2.html"
+          },
+          "region" : {
+            "startLine" : 207,
+            "endLine" : 207,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4927",
+      "message" : {
+        "text" : "The file a2.html on line 209 links to a third-party site over an unencrypted channel.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B9EA4CFA5D53D6F43A11D40E766EA888"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/tutorial/a2.html"
+          },
+          "region" : {
+            "startLine" : 209,
+            "endLine" : 209,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4928",
+      "message" : {
+        "text" : "The file a2.html on line 210 links to a third-party site over an unencrypted channel.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B9EA4CFA5D53D6F43A11D40E766EA889"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/tutorial/a2.html"
+          },
+          "region" : {
+            "startLine" : 210,
+            "endLine" : 210,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4921",
+      "message" : {
+        "text" : "The file a5.html on line 50 links to a third-party site over an unencrypted channel.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B271BD0CA8A9A9202C99D036EB739155"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/tutorial/a5.html"
+          },
+          "region" : {
+            "startLine" : 50,
+            "endLine" : 50,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4922",
+      "message" : {
+        "text" : "The file a5.html on line 51 links to a third-party site over an unencrypted channel.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "B271BD0CA8A9A9202C99D036EB739156"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/tutorial/a5.html"
+          },
+          "region" : {
+            "startLine" : 51,
+            "endLine" : 51,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4880",
+      "message" : {
+        "text" : "The file a9.html on line 40 links to a third-party site over an unencrypted channel.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "1DAD94C24BF4651AEF4DF2DBFBACAB9E"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "app/views/tutorial/a9.html"
+          },
+          "region" : {
+            "startLine" : 40,
+            "endLine" : 40,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4932",
+      "message" : {
+        "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "DFA19C51631FEBA6F7EBB2D0EACD44BB"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/cert/server.key"
+          },
+          "region" : {
+            "startLine" : 1,
+            "endLine" : 1,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4904",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "72189EF604D7B9E400EA71D876F17355"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 18,
+            "endLine" : 18,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4935",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "FA5EA3045768636D54B33315A7FDBDAC"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 19,
+            "endLine" : 19,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4905",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "72189EF604D7B9E400EA71D876F17356"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 27,
+            "endLine" : 27,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4883",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "2D151BEEA7156FBE11E480F095D1420F"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 28,
+            "endLine" : 28,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4906",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "72189EF604D7B9E400EA71D876F17357"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 35,
+            "endLine" : 35,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4892",
+      "message" : {
+        "text" : "Storing passwords or password details in plain text anywhere in the system or system code may compromise system security in a way that cannot be easily remedied.\n\n\n"
+      },
+      "level" : "note",
+      "partialFingerprints" : {
+        "issueInstanceId" : "5D05F722692A74986A60000AD7CA3869"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 36,
+            "endLine" : 36,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4902",
+      "message" : {
+        "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "71ECFADDED6F7614D2C9BE477B240957"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 113,
+            "endLine" : 113,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4903",
+      "message" : {
+        "text" : "The random number generator implemented by random() cannot withstand a cryptographic attack.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "71ECFADDED6F7614D2C9BE477B240958"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "artifacts/db-reset.js"
+          },
+          "region" : {
+            "startLine" : 114,
+            "endLine" : 114,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4873",
+      "message" : {
+        "text" : "Hardcoded encryption keys can compromise security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "0089EF1A0502D557FE055B17DB19DA77"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "config/env/all.js"
+          },
+          "region" : {
+            "startLine" : 9,
+            "endLine" : 9,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4929",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is difficult to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "BA91A217A2B1A598D5F0DB1C81F31D26"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "package-lock.json"
+          },
+          "region" : {
+            "startLine" : 3886,
+            "endLine" : 3886,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4933",
+      "message" : {
+        "text" : "The call to createServer() in server.js on line 143 uses an unencrypted protocol instead of an encrypted protocol to communicate with the server.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "EACB7EFB097786B8D22FAE4A5B6042D8"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "server.js"
+          },
+          "region" : {
+            "startLine" : 143,
+            "endLine" : 143,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    }, {
+      "ruleId" : "4908",
+      "message" : {
+        "text" : "Hardcoded passwords can compromise system security in a way that is not easy to remedy.\n\n\n"
+      },
+      "level" : "warning",
+      "partialFingerprints" : {
+        "issueInstanceId" : "7FBD8A79ACD28854C22498C6EF2BA264"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "test/security/profile-test.js"
+          },
+          "region" : {
+            "startLine" : 37,
+            "endLine" : 37,
+            "startColumn" : 1,
+            "endColumn" : 80
+          }
+        }
+      } ]
+    } ]
+  } ]
+}
